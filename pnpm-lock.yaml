@@ -1,0 +1,13 @@
+lockfileVersion: 5.3
+
+specifiers:
+  zora: ^5.0.2
+
+dependencies:
+  zora: 5.0.2
+
+packages:
+
+  /zora/5.0.2:
+    resolution: {integrity: sha512-HZtoEtYm9iJrym0nvel84NmmmOZyvS9I6q27kO1zAA5W4vY87LnRkokRGd5Qm6nrv0+YhGlr/i5VfVcS+VEK4g==}
+    dev: false

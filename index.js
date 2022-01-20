@@ -1,3 +1,10 @@
+/**
+ * JSON.parse and JSON.stringify with bigint support.
+ * 
+ * This is a essentially workaround for `JSON.parse` not having https://github.com/tc39/proposal-json-parse-with-source
+ * and `JSON.stringify` being unable to serialize `bigint`s.
+ */
+
 function remove_strings(json_text) {
     // Remove all escaped ", then remove all "..."
     return json_text.replace(/\\"/g, "").replace(/"[^"]+"/g, "");
@@ -45,6 +52,10 @@ function number_reviver(numbers, idx, value) {
 
 // Like JSON.parse, but parse all numbers that lack `[\.eE]` to `bigint` instead of `number`.
 //
+// The implementation assumes that the JavaScript engine's JSON.parse will call the
+// reviver in the same order that values appear in the JSON text. This does not appear
+// to be mandated by https://262.ecma-international.org/11.0/#sec-json.parse
+//
 // If you have JSON with values that flap between decimal and non-decimal, you must
 // either call `Number(...)` to convert them to a `number`, or fix the JSON on the
 // other end to emit `.0` on numbers intended to be decimal.
@@ -63,3 +74,5 @@ export function parse(text, reviver) {
         return value;
     });
 }
+
+// TODO: stringify function that converts BigInt to 'secret-cookie:number' and then uses regexp to fix it
