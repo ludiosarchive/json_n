@@ -13,6 +13,8 @@ test(`not confused by numbers in strings`, (A) => {
 
 test(`correct numbers are parsed from arrays`, (A) => {
     A.eq(parse(`[
+        -1.5e+100,
+        -1e+100,
         -1e100,
         -9007199254740993,
         -9007199254740992,
@@ -32,8 +34,12 @@ test(`correct numbers are parsed from arrays`, (A) => {
         9007199254740991,
         9007199254740992,
         9007199254740993,
-        1e100
+        1e100,
+        1e+100,
+        1.5e+100
     ]`), [
+        -1.5e+100,
+        -1e+100,
         -1e100,
         -9007199254740993n,
         -9007199254740992n,
@@ -53,6 +59,8 @@ test(`correct numbers are parsed from arrays`, (A) => {
         9007199254740991n,
         9007199254740992n,
         9007199254740993n,
-        1e100
+        1e100,
+        1e+100,
+        1.5e+100
     ]);
 })
