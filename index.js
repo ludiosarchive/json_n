@@ -24,6 +24,7 @@ function get_numbers(json_text) {
 }
 
 function number_reviver(numbers, idx, value) {
+    //console.log(`number_reviver(${numbers}, ${idx}, ${value})`);
     // We always consult the number texts to see whether the text has a [\.eE],
     // indicate that it should be a `number` instead of `bigint`.
     const text = numbers[idx];
@@ -60,6 +61,7 @@ function number_reviver(numbers, idx, value) {
 // either call `Number(...)` to convert them to a `number`, or fix the JSON on the
 // other end to emit `.0` on numbers intended to be decimal.
 export function parse(text, reviver) {
+    //console.log(`parse text=${text}`);
     const numbers = get_numbers(text);
 
     let idx = 0;
